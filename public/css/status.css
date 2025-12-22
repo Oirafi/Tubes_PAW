@@ -1,0 +1,107 @@
+.status-wrapper {
+    background: #d9ebf4;
+    min-height: 80vh;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.status-card {
+    background: #ffffff;
+    max-width: 1100px;
+    width: 100%;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.status-header h2 {
+    margin: 0;
+}
+
+.status-header p {
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.status-search {
+    display: flex;
+    gap: 8px;
+}
+
+.status-search select,
+.status-search button {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+}
+
+.status-search button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+}
+
+.status-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.status-table th {
+    text-align: left;
+    font-size: 13px;
+    color: #64748b;
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.status-table td {
+    padding: 16px 14px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.status-table tr:hover {
+    background: #f8fafc;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge.menunggu {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.badge.diproses {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.badge.selesai {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.empty {
+    text-align: center;
+    color: #94a3b8;
+}
+
+.table-footer {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #64748b;
+}

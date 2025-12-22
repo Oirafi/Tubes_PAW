@@ -1,0 +1,330 @@
+/* =====================================================
+   NAVBAR
+===================================================== */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 16px 48px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* LEFT */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-left img {
+    width: 60px;
+}
+
+.nav-brand small {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+}
+
+
+/* =====================================================
+   NAVBAR USER PROFILE
+===================================================== */
+.nav-user {
+    position: relative;
+}
+
+.nav-user-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #334155;
+}
+
+.user-icon {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: #64748b;
+    stroke-width: 2;
+}
+
+.chevron {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #64748b;
+    stroke-width: 2;
+}
+
+/* DROPDOWN */
+.nav-dropdown {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    min-width: 160px;
+    display: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.nav-dropdown.show {
+    display: block;
+}
+
+.nav-dropdown a,
+.nav-dropdown button {
+    display: block;
+    padding: 12px 16px;
+    width: 100%;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 14px;
+    color: #0f172a;
+    cursor: pointer;
+}
+
+.nav-dropdown a:hover,
+.nav-dropdown button:hover {
+    background: #f1f5f9;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+.hero {
+    background: #d9ebf4;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero-logo {
+    width: 200px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin: 16px 0;
+}
+
+.hero p {
+    max-width: 720px;
+    margin: auto;
+    color: #475569;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-top: 24px;
+    background: #3b82f6;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+/* =====================================================
+   STATISTIK
+===================================================== */
+.statistik {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.subtext {
+    color: #64748b;
+}
+
+.stat-grid {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 40px;
+}
+
+.stat-grid strong {
+    font-size: 36px;
+    display: block;
+}
+
+/* =====================================================
+   ALUR PROSES
+===================================================== */
+.alur {
+    background: #d9ebf4;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.alur-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.alur-step {
+    width: 180px;
+    text-align: center;
+}
+
+.alur-line {
+    width: 80px;
+    height: 2px;
+    background: #9ca3af;
+    margin-top: 45px;
+}
+
+.circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.circle.blue { background: #38bdf8; }
+.circle.yellow { background: #facc15; }
+.circle.red { background: #f87171; }
+.circle.orange { background: #fb923c; }
+.circle.green { background: #4ade80; }
+
+/* =====================
+    AUTH (LOGIN & REGISTER)
+    ===================== */
+    .auth-wrapper {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .auth-container {
+        display: flex;
+        gap: 80px;
+        align-items: center;
+    }
+
+    /* Card */
+    .auth-card {
+        background: #ffffff;
+        padding: 36px;
+        border-radius: 24px;
+        width: 380px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .auth-card h2 {
+        text-align: center;
+        margin-bottom: 6px;
+    }
+
+    .auth-card .subtitle {
+        text-align: center;
+        color: #64748b;
+        margin-bottom: 24px;
+        font-size: 14px;
+    }
+
+    /* FORM */
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    /* LABEL RATA KIRI */
+    .auth-form label {
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: #0f172a;
+        text-align: left;
+    }
+
+    /* INPUT */
+    .auth-form input {
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #cbd5e1;
+        margin-bottom: 16px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .auth-form input:focus {
+        outline: none;
+        border-color: #3b82f6;
+    }
+
+    /* BUTTON */
+    .auth-form button {
+        margin-top: 8px;
+        padding: 14px;
+        border-radius: 12px;
+        border: none;
+        background: #3b82f6;
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .auth-form button:hover {
+        background: #2563eb;
+    }
+
+    /* FOOTER */
+    .auth-footer {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 14px;
+    }
+
+    .auth-footer a {
+        color: #3b82f6;
+        text-decoration: none;
+    }
+
+    .auth-footer a:hover {
+        text-decoration: underline;
+    }
+
+    /* =====================
+   FIX AUTH TEXT ALIGN
+===================== */
+
+/* Matikan efek hero center di auth */
+.hero.auth-wrapper {
+    text-align: unset;
+}
+
+/* Paksa card normal */
+.auth-card {
+    text-align: unset;
+}
+
+/* Judul & subtitle tetap tengah */
+.auth-card h2,
+.auth-card .subtitle,
+.auth-footer {
+    text-align: center;
+}
+
+/* FORM WAJIB KIRI */
+.auth-form,
+.auth-form label,
+.auth-form input {
+    text-align: left;
+}

@@ -1,2 +1,15 @@
+# ignore semua file
 *
+
+# kecuali file penting
 !.gitignore
+!.htaccess
+!index.php
+!favicon.ico
+!robots.txt
+
+# ✅ IZINKAN ASSET
+!css/
+!css/**
+!img/
+!img/**

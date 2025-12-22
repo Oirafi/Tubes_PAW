@@ -1,0 +1,163 @@
+/* =====================
+   AUTH WRAPPER
+===================== */
+.auth-wrapper {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =====================
+   CARD
+===================== */
+.auth-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 24px;
+    width: 420px;
+    max-width: 90%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* =====================
+   TITLE
+===================== */
+.auth-card h2 {
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.auth-card .subtitle {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+/* =====================
+   ALERT & ERROR
+===================== */
+.alert-warning {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    background: #fff7ed;
+    color: #9a3412;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    border: 1px solid #fed7aa;
+}
+
+.error-box {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* =====================
+   FORM (INI KUNCI UTAMA)
+===================== */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* =====================
+   FORM GROUP (FINAL FIX)
+===================== */
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* 🔥 LABEL DI ATAS INPUT */
+}
+
+/* LABEL */
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #0f172a;
+    text-align: left;
+}
+
+/* INPUT */
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+/* FOCUS */
+.form-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+/* =====================
+   BUTTON
+===================== */
+.btn-auth {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    background: #3b82f6;
+    color: #ffffff;
+    border-radius: 14px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-auth:hover {
+    background: #2563eb;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.auth-footer {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-footer a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+/* =====================
+   FIX HERO + AUTH WRAPPER
+===================== */
+
+/* matikan efek hero untuk halaman auth */
+.hero.auth-wrapper {
+    padding: 0 !important;
+    text-align: left !important;
+}
+
+/* auth wrapper TIDAK center horizontal */
+.hero.auth-wrapper {
+    justify-content: flex-start !important;
+}
+
+/* container kasih ruang kiri */
+.auth-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* card tetap tengah layar */
+}

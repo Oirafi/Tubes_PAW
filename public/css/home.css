@@ -1,0 +1,153 @@
+/* =====================
+   HERO
+===================== */
+.hero {
+    background: #d9ebf4;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+}
+
+.hero p {
+    max-width: 720px;
+    margin: 16px auto 0;
+    color: #475569;
+}
+
+
+/* =====================
+   STATISTIK
+===================== */
+.statistik {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.statistik h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.statistik .subtext {
+    color: #64748b;
+}
+
+.stat-grid {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 40px;
+}
+
+.stat-grid strong {
+    font-size: 36px;
+    display: block;
+}
+
+
+/* =====================
+   ALUR PROSES
+===================== */
+.alur {
+    background: #d9ebf4;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.alur h2 {
+    font-size: 32px;
+    margin-bottom: 60px;
+}
+
+.alur-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.alur-step {
+    width: 180px;
+    text-align: center;
+}
+
+.alur-step h4 {
+    margin-top: 16px;
+    font-size: 16px;
+}
+
+.alur-step p {
+    font-size: 13px;
+    color: #475569;
+}
+
+/* garis antar step */
+.alur-line {
+    width: 80px;
+    height: 2px;
+    background: #9ca3af;
+    margin-top: 45px;
+}
+
+/* bulatan */
+.circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    color: white;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.circle.blue { background: #38bdf8; }
+.circle.yellow { background: #facc15; }
+.circle.red { background: #f87171; }
+.circle.orange { background: #fb923c; }
+.circle.green { background: #4ade80; }
+
+
+/* =====================
+   FAQ
+===================== */
+.faq {
+    padding: 100px 20px;
+    background: linear-gradient(90deg, #3b82f6, #22c55e);
+    color: white;
+    text-align: center;
+}
+
+.faq h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.faq details {
+    background: #ffffff;
+    color: #0f172a;
+    max-width: 720px;
+    margin: 12px auto;
+    padding: 16px 20px;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.faq summary {
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.faq p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #334155;
+}

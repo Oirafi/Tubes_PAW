@@ -1,0 +1,77 @@
+/* =====================
+   FOOTER (HORIZONTAL)
+===================== */
+
+.footer {
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    padding: 30px 20px;
+    font-size: 14px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* KIRI */
+.footer-left {
+    color: #374151;
+    white-space: nowrap;
+}
+
+/* TENGAH */
+.footer-center {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-center a {
+    color: #374151;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-center a:hover {
+    text-decoration: underline;
+}
+
+/* KANAN */
+.footer-right {
+    max-width: 320px;
+}
+
+.footer-right h4 {
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+/* ITEM KONTAK */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.contact-item p {
+    margin: 0;
+    color: #374151;
+    line-height: 1.4;
+}
+
+/* SOSIAL */
+.footer-social {
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social img {
+    width: 28px;
+    height: 28px;
+}
