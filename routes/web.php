@@ -40,4 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/status-laporan', [LaporanKehilanganController::class, 'status'])
         ->name('lapor.status');
 
+    // DETAIL LAPORAN
+    Route::get('/laporan/{id}', [LaporanKehilanganController::class, 'show'])
+    ->middleware('auth')
+    ->name('lapor.detail');
+
+
 });

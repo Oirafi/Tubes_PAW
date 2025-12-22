@@ -63,7 +63,8 @@
                             </span>
                         </td>
                         <td>
-                            <a href="#" class="action-btn">🔍</a>
+                            <a href="{{ route('lapor.detail', $item->id) }}" class="action-btn">🔍</a>
+
                         </td>
                     </tr>
                 @empty

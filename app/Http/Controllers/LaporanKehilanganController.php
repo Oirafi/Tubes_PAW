@@ -50,33 +50,41 @@ class LaporanKehilanganController extends Controller
             ->route('lapor.kehilangan')
             ->with('success', 'Laporan berhasil diunggah');
     }
-  public function status(Request $request)
-{
-    $query = LaporanKehilangan::where('user_id', Auth::id());
+    public function status(Request $request)
+    {
+        $query = LaporanKehilangan::where('user_id', Auth::id());
 
-    // FILTER STATUS
-    if ($request->filled('status')) {
-        $query->where('status', $request->status);
+        // FILTER STATUS
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // SORTING
+        $allowedSorts = [
+            'id',
+            'created_at',
+            'nama_item',
+            'status'
+        ];
+
+        $sort = $request->get('sort', 'created_at');
+        $order = $request->get('order', 'desc');
+
+        if (in_array($sort, $allowedSorts)) {
+            $query->orderBy($sort, $order);
+        }
+
+        $laporan = $query->get();
+
+        return view('laporan.status', compact('laporan'));
     }
-
-    // SORTING
-    $allowedSorts = [
-        'id',
-        'created_at',
-        'nama_item',
-        'status'
-    ];
-
-    $sort = $request->get('sort', 'created_at');
-    $order = $request->get('order', 'desc');
-
-    if (in_array($sort, $allowedSorts)) {
-        $query->orderBy($sort, $order);
-    }
-
-    $laporan = $query->get();
-
-    return view('laporan.status', compact('laporan'));
+    
+    public function show($id)
+    {
+        $laporan = LaporanKehilangan::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+    return view('laporan.detail', compact('laporan'));
 }
 
 
