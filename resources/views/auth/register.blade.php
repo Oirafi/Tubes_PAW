@@ -7,6 +7,15 @@
         <div class="auth-card">
             <h2>Buat Akun</h2>
             <p class="subtitle">Gabung untuk melaporkan barang hilang</p>
+            @if ($errors->any())
+            <div class="error-box">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <form method="POST" action="{{ route('register.post') }}" class="auth-form">
                 @csrf

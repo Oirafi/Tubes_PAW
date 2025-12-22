@@ -9,59 +9,80 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /* ===== REGISTER ===== */
-    public function showRegister()
-    {
-        return view('auth.register');
-    }
-
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        Auth::login($user);
-
-        return redirect()->route('home');
-    }
-
-    /* ===== LOGIN ===== */
+    /* =====================
+       SHOW LOGIN PAGE
+    ===================== */
     public function showLogin()
     {
         return view('auth.login');
     }
 
+    /* =====================
+       SHOW REGISTER PAGE
+    ===================== */
+    public function showRegister()
+    {
+        return view('auth.register');
+    }
+
+    /* =====================
+       REGISTER
+    ===================== */
+    public function register(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|confirmed',
+        ], [
+            'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai',
+            'password.min' => 'Kata sandi minimal 8 karakter',
+        ]);
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        // auto login setelah daftar
+        Auth::login($user);
+
+        return redirect()->route('home');
+    }
+
+    /* =====================
+       LOGIN
+    ===================== */
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'name' => 'required',
-            'password' => 'required',
+            'name' => 'required|string',
+            'password' => 'required|string',
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('home');
+
+            // balik ke halaman tujuan (misal lapor-kehilangan)
+            return redirect()->intended(route('home'));
         }
 
         return back()->withErrors([
-            'name' => 'Nama pengguna atau password salah',
-        ]);
+            'login_error' => 'Nama pengguna atau kata sandi salah',
+        ])->withInput();
     }
 
+    /* =====================
+       LOGOUT
+    ===================== */
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+
+        return redirect()->route('login');
     }
 }

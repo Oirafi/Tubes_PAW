@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Beranda')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@endpush
+
 @section('content')
 
 <!-- HERO -->
@@ -15,17 +19,15 @@
         Perjalanan Menggunakan Layanan Trans Banyumas
     </p>
 
-<a href="{{ route('lapor.kehilangan') }}" class="btn-primary">
-    + Lapor Kehilangan
-</a>
+    <a href="{{ route('lapor.kehilangan') }}" class="btn-primary">
+        + Lapor Kehilangan
+    </a>
 </section>
 
 <!-- STATISTIK -->
 <section class="statistik">
     <h2>Data Statistik Laporan</h2>
-    <p class="subtext">
-        Laporan Pengguna Platform Pelaporan Kehilangan Barang
-    </p>
+    <p class="subtext">Laporan Pengguna Platform Pelaporan Kehilangan Barang</p>
 
     <div class="stat-grid">
         <div>
@@ -47,64 +49,45 @@
     </div>
 </section>
 
-<!-- ALUR PROSES -->
+<!-- ALUR -->
 <section class="alur">
     <h2>Alur Proses Pelaporan</h2>
 
     <div class="alur-container">
-
         <div class="alur-step">
-            <div class="circle blue">
-                ✏️
-            </div>
+            <div class="circle blue">✏️</div>
             <h4>Isi Form Laporan</h4>
-            <p>Mengisi detail form laporan barang hilang / tertinggal</p>
+            <p>Mengisi detail laporan barang hilang</p>
         </div>
 
         <div class="alur-line"></div>
 
         <div class="alur-step">
-            <div class="circle yellow">
-                🔄
-            </div>
+            <div class="circle yellow">🔄</div>
             <h4>Proses Verifikasi</h4>
-            <p>Laporan anda akan diverifikasi</p>
+            <p>Laporan diverifikasi admin</p>
         </div>
 
         <div class="alur-line"></div>
 
         <div class="alur-step">
-            <div class="circle red">
-                💬
-            </div>
-            <h4>Proses Tindak Lanjut</h4>
-            <p>Admin menindaklanjuti laporan dan menghubungi anda</p>
+            <div class="circle red">💬</div>
+            <h4>Tindak Lanjut</h4>
+            <p>Admin menghubungi pelapor</p>
         </div>
 
         <div class="alur-line"></div>
 
         <div class="alur-step">
-            <div class="circle orange">
-                🔔
-            </div>
-            <h4>Pemberitahuan</h4>
-            <p>Terima notifikasi pemberitahuan laporan</p>
-        </div>
-
-        <div class="alur-line"></div>
-
-        <div class="alur-step">
-            <div class="circle green">
-                ✅
-            </div>
+            <div class="circle green">✅</div>
             <h4>Klaim Barang</h4>
-            <p>Serah terima barang di kantor TransBanyumas</p>
+            <p>Pengambilan barang</p>
         </div>
-
     </div>
 </section>
 
-<section class="faq">
+<!-- FAQ -->
+<section class="faq" id="faq">
     <h2>Sering Ditanyakan ke TemuBarang — FAQs</h2>
 
     <details>
@@ -188,7 +171,7 @@
         </p>
     </details>
 
-    <!-- FAQ TAMBAHAN (NILAI PLUS) -->
+    <!-- FAQ TAMBAHAN -->
     <details>
         <summary>Apakah saya harus memiliki akun untuk membuat laporan?</summary>
         <p>
@@ -208,11 +191,9 @@
     <details>
         <summary>Apakah saya bisa melaporkan barang yang ditemukan?</summary>
         <p>
-            Tidak. Anda belum dapat melaporkan barang temuan mungkin kedepannya bisa.
+            Tidak. Anda belum dapat melaporkan barang temuan,
+            mungkin kedepannya bisa.
         </p>
     </details>
 </section>
-
-
 @endsection
-

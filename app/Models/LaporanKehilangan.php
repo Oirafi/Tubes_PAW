@@ -17,15 +17,13 @@ class LaporanKehilangan extends Model
         'nama_item',
         'kategori_item',
         'deskripsi_barang',
-        'kronologi_kejadian',
+        'kronologi',
         'foto',
         'status'
     ];
 
-    // relasi ke user
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 }
-

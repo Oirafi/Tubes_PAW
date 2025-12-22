@@ -2,60 +2,83 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LaporanKehilangan;
 use Illuminate\Http\Request;
+use App\Models\LaporanKehilangan;
 use Illuminate\Support\Facades\Auth;
 
 class LaporanKehilanganController extends Controller
 {
-    // tampilkan form
     public function create()
     {
-        return view('laporan-kehilangan');
+        return view('laporan.create');
     }
 
-    // simpan laporan
     public function store(Request $request)
     {
         $request->validate([
-            'nama_item' => 'required|string',
-            'kategori_item' => 'required|string',
-            'deskripsi_barang' => 'required|min:20',
-            'kronologi_kejadian' => 'required|min:30',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
+            'nama_pelapor'     => 'required|string|max:255',
+            'no_telepon'       => 'required|digits_between:10,15',
+            'email'            => 'required|email',
+            'nama_item'        => 'required|string|max:255',
+            'kategori_item'    => 'required|string',
+            'deskripsi_barang' => 'required|string',
+            'kronologi'        => 'required|string',
+            'foto'             => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
+        ], [
+            'no_telepon.required' => 'Nomor telepon wajib diisi',
+            'no_telepon.digits_between' => 'Nomor telepon harus berupa angka (10–15 digit)',
         ]);
 
-        // upload foto
         $fotoPath = null;
         if ($request->hasFile('foto')) {
             $fotoPath = $request->file('foto')->store('laporan', 'public');
         }
 
         LaporanKehilangan::create([
-            'user_id' => Auth::id(),
-            'nama_pelapor' => Auth::user()->name,
-            'no_telepon' => Auth::user()->no_telepon ?? '-',
-            'email' => Auth::user()->email,
-
-            'nama_item' => $request->nama_item,
-            'kategori_item' => $request->kategori_item,
+            'user_id'          => Auth::id(),
+            'nama_pelapor'     => $request->nama_pelapor,
+            'no_telepon'       => $request->no_telepon,
+            'email'            => $request->email,
+            'nama_item'        => $request->nama_item,
+            'kategori_item'    => $request->kategori_item,
             'deskripsi_barang' => $request->deskripsi_barang,
-            'kronologi_kejadian' => $request->kronologi_kejadian,
-            'foto' => $fotoPath,
-            'status' => 'Terkirim',
+            'kronologi'        => $request->kronologi, // ✅ FIX
+            'foto'             => $fotoPath,
         ]);
 
-        return redirect()->route('laporan.riwayat')
-                         ->with('success', 'Laporan kehilangan berhasil dikirim.');
+        return redirect()
+            ->route('lapor.kehilangan')
+            ->with('success', 'Laporan berhasil diunggah');
+    }
+  public function status(Request $request)
+{
+    $query = LaporanKehilangan::where('user_id', Auth::id());
+
+    // FILTER STATUS
+    if ($request->filled('status')) {
+        $query->where('status', $request->status);
     }
 
-    // riwayat laporan user
-    public function riwayat()
-    {
-        $laporan = LaporanKehilangan::where('user_id', Auth::id())
-                    ->latest()
-                    ->get();
+    // SORTING
+    $allowedSorts = [
+        'id',
+        'created_at',
+        'nama_item',
+        'status'
+    ];
 
-        return view('riwayat-laporan', compact('laporan'));
+    $sort = $request->get('sort', 'created_at');
+    $order = $request->get('order', 'desc');
+
+    if (in_array($sort, $allowedSorts)) {
+        $query->orderBy($sort, $order);
     }
+
+    $laporan = $query->get();
+
+    return view('laporan.status', compact('laporan'));
+}
+
+
+
 }

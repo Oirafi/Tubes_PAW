@@ -3,7 +3,7 @@
 
         <!-- KIRI -->
         <div class="footer-left">
-            © 2025 TemuBarang. Semua hak dilindungi undang-undang.
+            <p>© 2025 TemuBarang. Semua hak dilindungi undang-undang.</p>
         </div>
 
         <!-- TENGAH -->
@@ -13,8 +13,8 @@
         </div>
 
         <!-- KANAN -->
-    <div class="footer-right">
-    <h4>Kontak</h4>
+        <div class="footer-right">
+            <h4>Kontak</h4>
 
             <div class="contact-item">
                 <span>📞</span>
@@ -28,12 +28,16 @@
 
             <div class="contact-item">
                 <span>📍</span>
-                <p>Jl. Sultan Agung No.11, Purwokerto Selatan, Banyumas</p>
+                <p>
+                    Jl. Sultan Agung No.11,<br>
+                    Purwokerto Selatan, Banyumas
+                </p>
             </div>
+
             <div class="footer-social">
-                <a href="#"><img src="{{ asset('img/TikTok.png') }}" alt="Tiktok"></a>
-                <a href="#"><img src="{{ asset('img/Facebook.png') }}" alt="Facebook"></a>
-                <a href="#"><img src="{{ asset('img/Instagram.png') }}" alt="Instagram"></a>
+                <img src="{{ asset('img/TikTok.png') }}" alt="TikTok">
+                <img src="{{ asset('img/Facebook.png') }}" alt="Facebook">
+                <img src="{{ asset('img/Instagram.png') }}" alt="Instagram">
             </div>
         </div>
 

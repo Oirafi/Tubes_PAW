@@ -2,22 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LaporanKehilanganController;
 
-/*
-|--------------------------------------------------------------------------
-| LANDING
-|--------------------------------------------------------------------------
-*/
+/* =====================
+   LANDING
+===================== */
 Route::get('/', function () {
     return view('beranda');
 })->name('home');
 
-
-/*
-|--------------------------------------------------------------------------
-| AUTH
-|--------------------------------------------------------------------------
-*/
+/* =====================
+   AUTH
+===================== */
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
@@ -27,11 +23,21 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-/*
-|--------------------------------------------------------------------------
-| LAPOR KEHILANGAN (PROTECTED)
-|--------------------------------------------------------------------------
-*/
-Route::get('/lapor-kehilangan', function () {
-    return view('laporan.create');
-})->middleware('auth')->name('lapor.kehilangan');
+/* =====================
+   LAPOR KEHILANGAN (WAJIB LOGIN)
+===================== */
+Route::middleware('auth')->group(function () {
+
+    Route::get('/lapor-kehilangan',
+        [LaporanKehilanganController::class, 'create']
+    )->name('lapor.kehilangan');
+
+    Route::post('/lapor-kehilangan',
+        [LaporanKehilanganController::class, 'store']
+    )->name('lapor.kehilangan.store');
+
+    // STATUS RIWAYAT
+    Route::get('/status-laporan', [LaporanKehilanganController::class, 'status'])
+        ->name('lapor.status');
+
+});
