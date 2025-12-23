@@ -11,30 +11,41 @@
     <div class="nav-menu">
 
     <a href="{{ route('home') }}">Beranda</a>
+{{-- ================= ADMIN ================= --}}
+@auth
+    @if(auth()->user()->role === 'admin')
 
-    {{-- DROPDOWN LAPORAN --}}
-    @auth
-    <div class="nav-item">
-        <button class="dropdown-toggle">
-            Laporkan Kehilangan
-            <svg width="14" height="14" viewBox="0 0 24 24">
-                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"/>
-            </svg>
-        </button>
+        <a href="{{ url('/admin/dashboard') }}">Dashboard</a>
 
-        <div class="nav-dropdown">
-            <a href="{{ route('lapor.kehilangan') }}">Buat Laporan</a>
-            <a href="{{ route('lapor.status') }}">Status Riwayat</a>
-        </div>
-    </div>
+        <a href="{{ url('/admin/laporan-temuan') }}">
+            Laporan Temuan
+        </a>
+
+        <a href="{{ route('lapor.status') }}">
+            Laporan Kehilangan
+        </a>
+
     @else
-        <a href="{{ route('login') }}">Laporkan Kehilangan</a>
-    @endauth
+        {{-- ================= USER ================= --}}
+        <div class="nav-item">
+            <button class="dropdown-toggle">
+                Laporkan Kehilangan
+            </button>
 
-    <a href="#">Tentang Kami</a>
-        <a href="{{ route('home') }}#faq">Pusat Bantuan</a>
+            <div class="nav-dropdown">
+                <a href="{{ route('lapor.kehilangan') }}">Buat Laporan</a>
+                <a href="{{ route('lapor.status') }}">Status Riwayat</a>
+            </div>
+        </div>
+    @endif
+@endauth
 
-    </div>
+
+    <a href="{{ route('tentang') }}">Tentang Kami</a>
+    <a href="{{ route('home') }}#faq">Pusat Bantuan</a>
+
+</div>
+
 
     {{-- KANAN --}}
     <div class="nav-right">
