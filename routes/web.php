@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminDashboardController;
    PUBLIC
 ===================== */
 Route::get('/', fn() => view('beranda'))->name('home');
+
 Route::get('/tentang-kami', fn() => view('tentang'))->name('tentang');
 
 /* =====================
@@ -49,11 +50,10 @@ Route::middleware(['auth', 'admin'])
     ->name('admin.')
     ->group(function () {
 
-        // ================= DASHBOARD =================
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])
             ->name('dashboard');
 
-        // ================= LAPORAN TEMUAN =================
+        // ======= LAPORAN TEMUAN =======
         Route::get('/laporan-temuan', [AdminTemuanController::class, 'index'])
             ->name('laporan-temuan.index');
 
@@ -66,16 +66,15 @@ Route::middleware(['auth', 'admin'])
         Route::get('/laporan-temuan/{id}', [AdminTemuanController::class, 'show'])
             ->name('laporan-temuan.show');
 
+        // ✏️ EDIT LAPORAN
         Route::get('/laporan-temuan/{id}/edit', [AdminTemuanController::class, 'edit'])
             ->name('laporan-temuan.edit');
 
+        // 💾 UPDATE LAPORAN
         Route::put('/laporan-temuan/{id}', [AdminTemuanController::class, 'update'])
             ->name('laporan-temuan.update');
 
+        // 🗑 HAPUS LAPORAN
         Route::delete('/laporan-temuan/{id}', [AdminTemuanController::class, 'destroy'])
             ->name('laporan-temuan.destroy');
-
-        // ================= FITUR ADMIN TAMBAHAN =================
-        Route::get('/verifikasi', fn() => "Halaman Verifikasi Data")->name('verifikasi');
-        Route::get('/users', fn() => "Manajemen Pengguna")->name('users');
 });
