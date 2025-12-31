@@ -8,7 +8,7 @@
 <section class="admin-wrapper">
     <div class="admin-header between">
         <h1>Detail Laporan Temuan</h1>
-        <a href="{{ route('admin.temuan.index') }}" class="btn-secondary">
+        <a href="{{ route('admin.laporan-temuan.index') }}" class="btn-secondary">
     ← Kembali
 </a>
 

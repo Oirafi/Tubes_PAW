@@ -5,16 +5,19 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LaporanKehilanganController;
 use App\Http\Controllers\AdminTemuanController;
 
-/* =====================
-   PUBLIC
-===================== */
+/*
+|--------------------------------------------------------------------------
+| PUBLIC
+|--------------------------------------------------------------------------
+*/
 Route::get('/', fn() => view('beranda'))->name('home');
-
 Route::get('/tentang-kami', fn() => view('tentang'))->name('tentang');
 
-/* =====================
-   AUTH
-===================== */
+/*
+|--------------------------------------------------------------------------
+| AUTH
+|--------------------------------------------------------------------------
+*/
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
@@ -23,9 +26,11 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-/* =====================
-   USER (LOGIN WAJIB)
-===================== */
+/*
+|--------------------------------------------------------------------------
+| USER (LOGIN WAJIB)
+|--------------------------------------------------------------------------
+*/
 Route::middleware('auth')->group(function () {
 
     Route::get('/lapor-kehilangan', [LaporanKehilanganController::class, 'create'])
@@ -41,38 +46,31 @@ Route::middleware('auth')->group(function () {
         ->name('lapor.detail');
 });
 
-/* =====================
-   ADMIN PANEL
-===================== */
-Route::middleware(['auth', 'admin'])
+/*
+|--------------------------------------------------------------------------
+| ADMIN PANEL (AUTH + ADMIN ONLY)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth','admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
 
         Route::get('/dashboard', fn() => view('admin.dashboard'))->name('dashboard');
 
-        // ======= LAPORAN TEMUAN =======
-        Route::get('/laporan-temuan', [AdminTemuanController::class, 'index'])
-            ->name('laporan-temuan.index');
+        // ========= LAPORAN TEMUAN =========
+        Route::get('/laporan-temuan', [AdminTemuanController::class, 'index'])->name('laporan-temuan.index');
+        Route::get('/laporan-temuan/create', [AdminTemuanController::class, 'create'])->name('laporan-temuan.create');
+        Route::post('/laporan-temuan', [AdminTemuanController::class, 'store'])->name('laporan-temuan.store');
+        Route::get('/laporan-temuan/{id}', [AdminTemuanController::class, 'show'])->name('laporan-temuan.show');
+        Route::get('/laporan-temuan/{id}/edit', [AdminTemuanController::class, 'edit'])->name('laporan-temuan.edit');
+        Route::put('/laporan-temuan/{id}', [AdminTemuanController::class, 'update'])->name('laporan-temuan.update');
+        Route::delete('/laporan-temuan/{id}', [AdminTemuanController::class, 'destroy'])->name('laporan-temuan.destroy');
 
-        Route::get('/laporan-temuan/create', [AdminTemuanController::class, 'create'])
-            ->name('laporan-temuan.create');
+        // ========= MENU TAMBAHAN ADMIN =========
+        Route::get('/verifikasi', fn()=> "Halaman Verifikasi Data")
+            ->name('verifikasi');
 
-        Route::post('/laporan-temuan', [AdminTemuanController::class, 'store'])
-            ->name('laporan-temuan.store');
-
-        Route::get('/laporan-temuan/{id}', [AdminTemuanController::class, 'show'])
-            ->name('laporan-temuan.show');
-
-        // ✏️ EDIT LAPORAN
-        Route::get('/laporan-temuan/{id}/edit', [AdminTemuanController::class, 'edit'])
-            ->name('laporan-temuan.edit');
-
-        // 💾 UPDATE LAPORAN
-        Route::put('/laporan-temuan/{id}', [AdminTemuanController::class, 'update'])
-            ->name('laporan-temuan.update');
-
-        // 🗑 HAPUS LAPORAN
-        Route::delete('/laporan-temuan/{id}', [AdminTemuanController::class, 'destroy'])
-            ->name('laporan-temuan.destroy');
+        Route::get('/users', fn()=> "Manajemen Pengguna")
+            ->name('users');
 });
