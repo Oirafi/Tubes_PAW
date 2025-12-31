@@ -35,9 +35,20 @@
             </div>
 
             <div class="footer-social">
-                <img src="{{ asset('img/TikTok.png') }}" alt="TikTok">
-                <img src="{{ asset('img/Facebook.png') }}" alt="Facebook">
-                <img src="{{ asset('img/Instagram.png') }}" alt="Instagram">
+            <a href="https://www.tiktok.com/@trans.banyumas?_r=1&_t=ZS-92fqmXLK6QJ" target="_blank" rel="noopener">
+                <img src="{{ asset('img/tiktok.png') }}" alt="TikTok" width="30">
+            </a>
+
+            <a href="https://www.facebook.com/BTSBanyumas2021" target="_blank" rel="noopener">
+                <img src="{{ asset('img/facebook.png') }}" alt="Facebook" width="30">
+            </a>
+
+            <a href="https://www.instagram.com/trans.banyumas?igsh=bGFqOHI0NXZpejEz" target="_blank" rel="noopener">
+                <img src="{{ asset('img/instagram.png') }}" alt="Instagram" width="30">
+            </a>
+
+</div>
+
             </div>
         </div>
 
