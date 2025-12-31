@@ -9,7 +9,7 @@
     <div class="admin-header">
         <h1>Daftar Laporan Temuan</h1>
 
-        <a href="{{ route('admin.temuan.create') }}" class="btn-primary">
+        <a href="{{ route('admin.laporan-temuan.create') }}" class="btn-primary">
             + Tambah Temuan
         </a>
     </div>
@@ -35,11 +35,13 @@
                         <td>{{ $item->kategori }}</td>
                         <td>{{ $item->lokasi_ditemukan }}</td>
                         <td>{{ \Carbon\Carbon::parse($item->tanggal_ditemukan)->format('d M Y') }}</td>
+
                         <td class="aksi">
-                            <a href="{{ route('admin.temuan.show', $item->id) }}" class="btn-small"> Detail </a>
+                            <a href="{{ route('admin.laporan-temuan.show', $item->id) }}" class="btn-small">Detail</a>
+                            <a href="{{ route('admin.laporan-temuan.edit', $item->id) }}" class="btn-small warning">Edit</a>
 
-
-                            <form action="{{ url('/admin/laporan-temuan/'.$item->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('admin.laporan-temuan.destroy', $item->id) }}" 
+                                method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn-small danger" onclick="return confirm('Hapus laporan ini?')">
