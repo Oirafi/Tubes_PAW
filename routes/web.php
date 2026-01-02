@@ -5,13 +5,16 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LaporanKehilanganController;
 use App\Http\Controllers\AdminTemuanController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminUserController;       
+use App\Http\Controllers\UserProfileController;       
+use App\Http\Controllers\ProfileController;
 
 /* =====================
    PUBLIC
 ===================== */
 Route::get('/', fn() => view('beranda'))->name('home');
-
 Route::get('/tentang-kami', fn() => view('tentang'))->name('tentang');
+
 
 /* =====================
    AUTH
@@ -23,6 +26,18 @@ Route::get('/register', [AuthController::class, 'showRegister'])->name('register
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+/* =====================
+   PROFIL (TANPA UPLOAD GAMBAR)
+===================== */
+Route::middleware('auth')->group(function () {
+
+    Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profil', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
 
 /* =====================
    USER (LOGIN WAJIB)
@@ -42,6 +57,7 @@ Route::middleware('auth')->group(function () {
         ->name('lapor.detail');
 });
 
+
 /* =====================
    ADMIN PANEL
 ===================== */
@@ -50,10 +66,11 @@ Route::middleware(['auth', 'admin'])
     ->name('admin.')
     ->group(function () {
 
+        // 📊 DASHBOARD
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])
             ->name('dashboard');
 
-        // ======= LAPORAN TEMUAN =======
+        /* ======= LAPORAN TEMUAN ======= */
         Route::get('/laporan-temuan', [AdminTemuanController::class, 'index'])
             ->name('laporan-temuan.index');
 
@@ -66,15 +83,29 @@ Route::middleware(['auth', 'admin'])
         Route::get('/laporan-temuan/{id}', [AdminTemuanController::class, 'show'])
             ->name('laporan-temuan.show');
 
-        // ✏️ EDIT LAPORAN
         Route::get('/laporan-temuan/{id}/edit', [AdminTemuanController::class, 'edit'])
             ->name('laporan-temuan.edit');
 
-        // 💾 UPDATE LAPORAN
         Route::put('/laporan-temuan/{id}', [AdminTemuanController::class, 'update'])
             ->name('laporan-temuan.update');
 
-        // 🗑 HAPUS LAPORAN
         Route::delete('/laporan-temuan/{id}', [AdminTemuanController::class, 'destroy'])
             ->name('laporan-temuan.destroy');
-});
+
+
+        /* ⭐ VERIFIKASI LAPORAN */
+        Route::get('/verifikasi', fn() => view('admin.verifikasi'))
+            ->name('verifikasi');
+
+
+        /* ⭐ MANAJEMEN PENGGUNA */
+        Route::get('/users', [AdminUserController::class, 'index'])
+            ->name('users');
+
+        Route::put('/users/{id}/role', [AdminUserController::class, 'updateRole'])
+            ->name('users.updateRole');
+
+        Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])
+            ->name('users.destroy');
+    });
+

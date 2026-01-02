@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
-
     {{-- CSS KHUSUS HALAMAN --}}
     @stack('styles')
 </head>
