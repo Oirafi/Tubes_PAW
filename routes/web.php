@@ -5,8 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LaporanKehilanganController;
 use App\Http\Controllers\AdminTemuanController;
 use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\AdminUserController;       
-use App\Http\Controllers\UserProfileController;       
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminLaporanKehilanganController;
+use App\Http\Controllers\AdminVerifikasiController;
 use App\Http\Controllers\ProfileController;
 
 /* =====================
@@ -14,7 +15,6 @@ use App\Http\Controllers\ProfileController;
 ===================== */
 Route::get('/', fn() => view('beranda'))->name('home');
 Route::get('/tentang-kami', fn() => view('tentang'))->name('tentang');
-
 
 /* =====================
    AUTH
@@ -27,23 +27,17 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
 /* =====================
-   PROFIL (TANPA UPLOAD GAMBAR)
+   USER & PROFIL (LOGIN WAJIB)
 ===================== */
 Route::middleware('auth')->group(function () {
 
+    /* ===== PROFIL USER ===== */
     Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profil', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profil', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-
-/* =====================
-   USER (LOGIN WAJIB)
-===================== */
-Route::middleware('auth')->group(function () {
-
+    /* ===== LAPOR KEHILANGAN ===== */
     Route::get('/lapor-kehilangan', [LaporanKehilanganController::class, 'create'])
         ->name('lapor.kehilangan');
 
@@ -57,7 +51,6 @@ Route::middleware('auth')->group(function () {
         ->name('lapor.detail');
 });
 
-
 /* =====================
    ADMIN PANEL
 ===================== */
@@ -66,11 +59,11 @@ Route::middleware(['auth', 'admin'])
     ->name('admin.')
     ->group(function () {
 
-        // 📊 DASHBOARD
+        /* ===== DASHBOARD ===== */
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])
             ->name('dashboard');
 
-        /* ======= LAPORAN TEMUAN ======= */
+        /* ===== LAPORAN TEMUAN ===== */
         Route::get('/laporan-temuan', [AdminTemuanController::class, 'index'])
             ->name('laporan-temuan.index');
 
@@ -92,13 +85,24 @@ Route::middleware(['auth', 'admin'])
         Route::delete('/laporan-temuan/{id}', [AdminTemuanController::class, 'destroy'])
             ->name('laporan-temuan.destroy');
 
+        /* ===== LAPORAN KEHILANGAN (ADMIN) ===== */
+        Route::get('/laporan-kehilangan', [AdminLaporanKehilanganController::class, 'index'])
+            ->name('laporan-kehilangan.index');
 
-        /* ⭐ VERIFIKASI LAPORAN */
-        Route::get('/verifikasi', fn() => view('admin.verifikasi'))
-            ->name('verifikasi');
+        Route::get('/laporan-kehilangan/{id}', [AdminLaporanKehilanganController::class, 'show'])
+            ->name('laporan-kehilangan.show');
 
+        /* ===== VERIFIKASI LAPORAN ===== */
+        Route::get('/verifikasi', [AdminVerifikasiController::class, 'index'])
+            ->name('verifikasi.index');
 
-        /* ⭐ MANAJEMEN PENGGUNA */
+        Route::put('/verifikasi/{id}/approve', [AdminVerifikasiController::class, 'approve'])
+            ->name('verifikasi.approve');
+
+        Route::put('/verifikasi/{id}/reject', [AdminVerifikasiController::class, 'reject'])
+            ->name('verifikasi.reject');
+
+        /* ===== MANAJEMEN PENGGUNA ===== */
         Route::get('/users', [AdminUserController::class, 'index'])
             ->name('users');
 
@@ -108,4 +112,3 @@ Route::middleware(['auth', 'admin'])
         Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])
             ->name('users.destroy');
     });
-

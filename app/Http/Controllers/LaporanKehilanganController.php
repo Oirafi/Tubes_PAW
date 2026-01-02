@@ -85,8 +85,21 @@ class LaporanKehilanganController extends Controller
             ->where('user_id', Auth::id())
             ->firstOrFail();
     return view('laporan.detail', compact('laporan'));
-}
+    }
 
+    public function adminIndex()
+    {
+        $laporan = \App\Models\LaporanKehilangan::latest()->get();
+
+        return view('admin.laporan-kehilangan.index', compact('laporan'));
+    }
+
+    public function adminShow($id)
+    {
+        $laporan = \App\Models\LaporanKehilangan::findOrFail($id);
+
+        return view('admin.laporan-kehilangan.show', compact('laporan'));
+    }
 
 
 }
